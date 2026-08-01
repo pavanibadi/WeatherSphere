@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<title>Weather Report</title>
+<link rel="stylesheet" href="weather.css">
+</head>
+<body>
+    <header>
+    <div class="search">
+        <input type="search" class="search-input" placeholder="🔍Search for city....">
+         <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+    <div class="location">
+    <i class="fa-solid fa-location-dot"></i>
+    <p class="location-name">Visakhapatnam, India</p>
+</div>
+    <div class="date">
+        <span id="current-date">Monday 14 july,2026</span>
+        <span id="current-time">10:30 PM</span>
+    </div>
+</header>
+    <div class="dashboard">
+        <aside class="sidebar">
+        <div class="logo">
+        <div class="logo-icon">
+        <i class="fa-solid fa-cloud cloud"></i>
+        <i class="fa-solid fa-sun sun"></i>
+        </div>
+    <div class="logo-text">
+    <h2>
+        <span class="weather">Weather</span>
+        <span class="sphere">Sphere</span>
+    </h2>
+    <p>Stay Ahead, Stay Safe</p>
+</div>
+</div>
+<nav>
+<ul class="menu">
+        <li><a href="#weather" class="nav-link"><i class="fa-solid fa-house"></i>
+            Dashboard</a></li>
+        <li><a href="#forecast" class="nav-link"><i class="fa-solid fa-cloud"></i>
+            Forecast</a></li>
+        <li><a href="#air-quality" class="nav-link"><i class="fa-solid fa-smog"></i>
+            Air Quality</a></li> 
+        <li><a href="#trend" class="nav-link"><i class="fa-solid fa-chart-line"></i>
+            Temperature Trend</a></li>     
+        <li><a href="#RainFall" class="nav-link"><i class="fa-solid fa-cloud-rain forecast-icon"></i>
+            RainFall</a></li>   
+        <li><a href="#Maps" class="nav-link"><i class="fa-solid fa-map"></i>
+            Maps</a></li>
+        <li><a href="#Alerts" class="nav-link"><i class="fa-solid fa-triangle-exclamation"></i>
+            Alerts</a></li>
+        </ul> 
+        </nav>   
+        <h3 class="recent-title">Recent Searches</h3>
+    <div class="city" id="recentSearches">
+        <div class="city-card">
+    <div class="city-left">
+        <i class="fa-solid fa-cloud-sun"></i>
+        <div class="city-info">
+            <h4>Visakhapatnam</h4>
+            <p>India</p>
+        </div>
+    </div>
+    <span class="temp">28°C</span>
+    </div>
+    <div class="city-card">
+    <div class="city-left">
+        <i class="fa-solid fa-cloud-rain"></i>
+        <div class="city-info">
+            <h4>Guntur</h4>
+            <p>India</p>
+        </div>
+    </div>
+    <span class="temp">20°C</span>
+    </div>
+    <div class="city-card">
+    <div class="city-left">
+        <i class="fa-solid fa-sun"></i>
+        <div class="city-info">
+            <h4>Bangalore</h4>
+            <p>India</p>
+        </div>
+    </div>
+    <span class="temp">34°C</span>
+    </div>
+    </div>  
+          <div class="theme-buttons">
+    <button id="lightThemeBtn"><i class="fa-solid fa-sun"></i></button>
+    <button id="darkThemeBtn"><i class="fa-solid fa-moon"></i></button>
+</div>  
+        </aside>
+        <main>
+        <div class="maincard">
+            <div class="currentweather" id="weather">
+                <span class="live">Live</span>
+                <div class="weather-info">
+                <h1 class="temperature">28°C</h1>
+                <div class="weather-content">
+                <div class="weather-summary">
+                <h4 class="condition">Sunny <i class="fa-solid fa-sun"></i> </h4>
+                <p>Feels like <span class="feels-like">30°</span></p>
+                <div class="temp-range">
+                <span class="max">↑ 31°C</span>
+                <span class="min">↓ 24°C</span>
+                </div>
+                </div>
+                </div>
+                </div>
+            <div class="details">
+                <div class="conditions">
+                    <i class="fa-solid fa-droplet"></i>
+                    <h4>Humidity</h4>
+                    <span class="humidity-value">68%</span>
+                </div>
+                <div class="conditions">
+                    <i class="fa-solid fa-wind"></i>
+                    <h4>Wind</h4>
+                    <span class="wind-value">48 km/h</span>
+                </div>
+                <div class="conditions">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <h4>Pressure</h4>
+                    <span class="pressure-value">1012 hPa</span>
+                </div>
+                <div class="conditions">
+                    <i class="fa-solid fa-eye"></i>
+                    <h4>Visibility</h4>
+                    <span class="visibility-value">10 km</span>
+                </div>
+                <div class="conditions">
+                    <i class="fa-solid fa-sun"></i>
+                    <h4>UV Index</h4>
+                    <span class="current-uv">High (6)</span>
+                </div>
+            </div>
+            <div class="sun-data">
+                    <div class="sun-data-card">
+                    <div class="block">    
+                    <i class="fa-solid fa-sun"></i>
+                    <h4>Sunrise</h4>
+                    </div>
+                    <span class="sunrise">5:32 AM</span>
+                </div>
+                <div class="sun-data-card">
+                    <div class="block">
+                    <i class="fa-solid fa-sun"></i>
+                    <h4>Sunset</h4>
+                    </div>
+                    <span class="sunset">6:45 PM</span>
+                </div>
+                <div class="sun-data-card">
+                    <div class="block">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h4>Air Quality</h4>
+                    </div>
+                    <span class="quality">Good(42 AQI)</span>
+                </div>
+                </div>
+        </div>
+        <div class="forecast-side" id="forecast">
+        <section class="hourly-forecast">   
+         <h2>24-Hour Forecast</h2>
+        <div class="forecast-container">
+
+    <div class="forecast-card">
+        <span class="forecast-time">Now</span>
+        <i class="fa-solid fa-sun forecast-icon"></i>
+        <span class="forecast-temp">28°C</span>
+        <small class="forecast-condition">Clear</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">11 AM</span>
+        <i class="fa-solid fa-sun forecast-icon"></i>
+        <span class="forecast-temp">29°C</span>
+        <small class="forecast-condition">Clear</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">2 PM</span>
+        <i class="fa-solid fa-sun forecast-icon"></i>
+        <span class="forecast-temp">30°C</span>
+        <small class="forecast-condition">Sunny</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">5 PM</span>
+        <i class="fa-solid fa-cloud forecast-icon"></i>
+        <span class="forecast-temp">31°C</span>
+        <small class="forecast-condition">Cloudy</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">8 PM</span>
+        <i class="fa-solid fa-cloud-rain forecast-icon"></i>
+        <span class="forecast-temp">29°C</span>
+        <small class="forecast-condition">Light Rain</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">11 PM</span>
+        <i class="fa-solid fa-cloud-moon forecast-icon"></i>
+        <span class="forecast-temp">27°C</span>
+        <small class="forecast-condition">Cloudy</small>
+    </div>
+
+    <div class="forecast-card">
+        <span class="forecast-time">2 AM</span>
+        <i class="fa-solid fa-moon forecast-icon"></i>
+        <span class="forecast-temp">25°C</span>
+        <small class="forecast-condition">Clear</small>
+    </div>
+
+</div>
+        </section>
+        <section class="weekly-forecast">
+          <h2>7-Day Forecast</h2>
+          <div class="forecast-container">
+            <div class="forecast-card">
+                <span class="forecast-time"> Mon</span>
+                <i class="forecast-icon fa-solid fa-sun"></i>
+                <div class="temp-range">
+                <span class="day-max">↑ 28°C</span>
+                <span class="day-min">↓ 24°C</span>
+                </div>
+                <small class="day-condition">Clear</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain"> 10%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Tue</span>
+                <i class="forecast-icon fa-solid fa-sun"></i>
+                 <div class="temp-range">
+                <span class="day-max">↑ 30°C</span>
+                 <span class="day-min">↓ 24°C</span>
+                 </div>
+                <small class="day-condition">Clear</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain">20%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Wed</span>
+                <i class="forecast-icon fa-solid fa-sun"></i>
+                 <div class="temp-range">
+                <span class="day-max">↑ 30°C</span>
+                 <span class="day-min">↓ 23°C</span>
+                 </div>
+                <small class="day-condition">Sunny</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain">30%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Thu</span>
+                <i class="forecast-icon fa-solid fa-sun"></i>
+                 <div class="temp-range">
+                <span class="day-max">↑ 31°C</span>
+                <span class="day-min">↓ 25°C</span>
+                </div>
+                <small class="day-condition">Sunny</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain"> 30%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Fri</span>
+                <i class="forecast-icon fa-solid fa-cloud"></i>
+                 <div class="temp-range">
+                <span class="day-max">⬆ 31°C</span>
+                 <span class="day-min">⬇ 24°C</span>
+                 </div>
+                <small class="day-condition">Overcast</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain">20%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Sat</span>
+                <i class="forecast-icon fa-solid fa-cloud-rain"></i>
+                 <div class="temp-range">
+                <span class="day-max">↑ 30°C</span>
+                 <span class="day-min">↓ 24°C</span>
+                 </div>
+                <small class="day-condition">Light Rain</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain"> 30%</span></p>
+            </div>
+            <div class="forecast-card">
+                <span class="forecast-time">Sun</span>
+                <i class="forecast-icon fa-solid fa-smog"></i>
+                 <div class="temp-range">
+                <span class="day-max">↑ 29°C</span>
+                 <span class="day-min">↓ 24°C</span>
+                 </div>
+                <small class="day-condition">Fog</small>
+                <p><i class="fa-solid fa-cloud-droplet"></i><span class="day-rain">10%</span></p>
+            </div>
+            </div>
+        </section>
+        </div>
+        </div>
+        <section class="report-card" id="air-quality">
+        <div class="air-quality">
+            <h2>Air Quality Index</h2>
+            <div class="aqi-circle">
+    <span class="aqui">42</span>
+</div>
+
+<div class="aqi-status">Good</div>
+
+<div class="aqi-details">
+    <small>PM2.5 : <span class="pma">18</span></small>
+     <small>PM10 : <span class="pmb">32</span></small>
+    <small class="O3">O₃ : 12</small>
+</div>
+        </div>
+        <div class="uv-index">
+    <h2>UV Index</h2>
+    <i class="fa-solid fa-temperature-high"></i>
+    <div class="uv-score">
+        <span class="uv-value">6</span>
+        <small class="uv-status">High</small>
+    </div>
+</div>
+
+<div class="wind-direction">
+    <h2><i class="fa-solid fa-wind"></i> Wind Direction</h2>
+    <i class="fa-solid fa-compass"></i>
+    <div class="wind-info">
+        <span class="wind-dir">NW</span>
+        <span class="wind-deg">315°</span>
+        <small class="wind-speed">18 km/h</small>
+    </div>
+</div>
+
+<div class="dew-point">
+    <h2><i class="fa-solid fa-droplet"></i> Dew Point</h2>
+    <i class="fa-solid fa-droplet"></i>
+    <div class="dew-info">
+        <span class="dew-value">22°C</span>
+        <small class="dew-status">Comfortable</small>
+    </div>
+</div>
+
+<div class="visibility">
+    <h2>Visibility</h2>
+    <i class="fa-solid fa-eye"></i>
+    <span class="visibility-distance">10 km</span>
+    <small class="visibility-status">Clear View</small>
+</div>
+       <div class="rain-chance">
+    <h2>Rain Chance</h2>
+    <i class="fa-solid fa-cloud-rain"></i>
+
+    <span class="rain-value">20%</span>
+    <small class="rain-expected">Light Rain</small>
+</div>
+</section>
+        <section class="analytics">
+            <div class="chart-card" id="trend">
+            <h2>🌡 Temperature Trend</h2>
+            <canvas id="temperatureChart"></canvas>
+            </div>
+            <div class="chart-card" id="RainFall">
+            <h2>📊 Rainfall</h2>
+            <canvas id="rainChart"></canvas>
+            </div>
+            <div class="chart-card" id="Maps">
+    <h2>🗺️ Weather Map</h2>
+    <div class="map-controls">
+    <button onclick="changeLayer('clouds')">☁ Clouds</button>
+    <button onclick="changeLayer('rain')">🌧 Rain</button>
+    <button onclick="changeLayer('temp')">🌡 Temperature</button>
+    <button onclick="changeLayer('wind')">💨 Wind</button>
+</div>
+    <div id="weatherMap"></div>
+</div>
+        </section>
+        <section class="info">
+            <div class="favourite-cities" id="recents">
+                <h2>❤️ Recently viewed</h2>
+                <div class="fav" id="favCities">
+                <div class="city-item">
+                    <h4>Visakhapatnam</h4>
+                    <i class="fa-solid fa-sun"></i>
+                    <span>28°C</span>
+                </div>
+                 <div class="city-item">
+                    <h4>Hyderabad</h4>
+                    <i class="fa-solid fa-cloud-rain"></i>
+                    <span>32°C</span>
+                </div>
+                 <div class="city-item">
+                    <h4>Delhi</h4>
+                    <i class="fa-solid fa-cloud-sun"></i>
+                    <span>30°C</span>
+                </div>
+                 <div class="city-item">
+                    <h4>Chennai</h4>
+                    <i class="fa-solid fa-cloud-rain"></i>
+                    <span>31°C</span>
+                </div>
+                 <div class="city-item">
+                    <h4>Bangalore</h4>
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>26°C</span>
+                </div>
+            </div>
+            </div>
+            <div class="weather-alerts" id="Alerts">
+    <h2>Weather Alerts</h2>
+
+    <div class="cards">
+
+        <div class="alert-card">
+            <i class="fa-solid fa-cloud-rain"></i>
+
+            <div class="alert-content">
+                <h3>Heavy Rain Alert</h3>
+                <p>Heavy rain expected in your area</p>
+                <span>Tomorrow, 25 July 2026</span>
+            </div>
+        </div>
+
+        <div class="alert-card">
+            <i class="fa-solid fa-temperature-high"></i>
+
+            <div class="alert-content">
+                <h3>Heat Wave</h3>
+                <p>High temperature expected</p>
+                <span>16 July - 18 July 2026</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+                <div class="weather-news">
+    <h2>Weather News</h2>
+
+    <div class="weather-news-body">
+        <img class="news-image"  alt="Weather News">
+
+        <div class="news-content">
+            <p class="news-title">
+                Monsoon likely to cover entire India in next 3 days
+            </p>
+
+            <span class="news-date">
+                14 July 2026
+            </span>
+        </div>
+    </div>
+</div>
+        </section>
+        </main>
+    </div>
+    <footer>
+    <div class="footer-left">
+        <h3>
+            <i class="fa-solid fa-cloud-sun"></i>
+            WeatherSphere
+        </h3>
+
+        <p>
+            © 2026 WeatherSphere. All Rights Reserved.
+        </p>
+    </div>
+
+    <div class="footer-center">
+        <p>
+            Weather data powered by
+            <a href="https://openweathermap.org" target="_blank">
+                OpenWeatherMap
+            </a>
+        </p>
+    </div>
+
+    <div class="footer-right">
+
+        <span>Follow Us</span>
+
+        <div class="links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="weatherjavascript.js"></script>  
+<script>
+const body = document.body;
+document.getElementById("lightThemeBtn").addEventListener("click", () => {
+    body.classList.add("light-theme");
+    localStorage.setItem("theme", "light");
+});
+
+document.getElementById("darkThemeBtn").addEventListener("click", () => {
+    body.classList.remove("light-theme");
+    localStorage.setItem("theme", "dark");
+});
+
+if (localStorage.getItem("theme") === "light") {
+    body.classList.add("light-theme");
+}
+</script>  
+</body>
+</html>
